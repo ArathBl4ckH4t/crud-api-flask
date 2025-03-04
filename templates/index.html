@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Créditos</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <style>
+        /*  FONDO */
+        body {
+            background: #0a0a0a;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .hacker-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, 
+                    rgba(0, 255, 150, 0.03) 20%, 
+                    rgba(0, 80, 255, 0.03) 80%),
+                radial-gradient(circle, transparent 20%, #0a0a0a 100%);
+            animation: hologram 40s linear infinite;
+            z-index: 0;
+        }
+
+        .digital-grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 150, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 80, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .scan-line {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 95%,
+                rgba(0, 255, 150, 0.1) 100%
+            );
+            animation: scan 4s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes hologram {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Mantener contenido legible */
+        .container {
+            position: relative;
+            z-index: 1;
+            background: #c9c9c9f7;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 20px;
+        }
+
+        .btn-warning {
+    --bs-btn-color: #000;
+    --bs-btn-bg: #0773bc;
+    --bs-btn-border-color: #0773bc;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #17afee;
+    --bs-btn-hover-border-color: #17afee;
+    --bs-btn-focus-shadow-rgb: 217, 164, 6;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #0096ff;
+    --bs-btn-active-border-color: #0096ff;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #0096ff;
+    --bs-btn-disabled-border-color: #0096ff;
+}
+.bg-success {
+    background-color: #155291db !important;
+}
+.table-dark {
+    --bs-table-color: #fff;
+    --bs-table-bg: #1a69bbd4;
+    --bs-table-border-color: #373b3e;
+    --bs-table-striped-bg: #2c3034;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #373b3e;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #323539;
+    --bs-table-hover-color: #fff;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}
+.bg-primary {
+    background-color: #e34a4a !important;
+}
+.btn-primary {
+    background-color: #e34a4a;
+    border-color: #e34a4a;
+}
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ff0000;
+    --bs-btn-border-color: #ff1a1a;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #c81e1e;
+    --bs-btn-hover-border-color: #c81e1e;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #c81e1e;
+    --bs-btn-active-border-color: #c81e1e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #c81e1e;
+    --bs-btn-disabled-border-color: #c81e1e;
+}
+.bg-warning {
+    background-color: #1c9930 !important;
+}
+    </style>
+    
+</head>
+
+<body>
+
+    <div class="hacker-bg"></div>
+    <div class="digital-grid"></div>
+    <div class="scan-line"></div>
+
+    <div class="container py-5">
+        <h1 class="text-center mb-4 display-4 fw-bold text-primary">
+            <i class="fas fa-hand-holding-usd me-2"></i>Control de Créditos
+        </h1>
+
+        <div class="d-flex justify-content-end p-3">
+            <a href="/logout" class="btn btn-danger">
+                <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
+            </a>
+        </div>
+        
+        <!-- Tarjeta del Formulario -->
+        <div class="card shadow-lg mb-5 animate__animated animate__fadeIn">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Nuevo Crédito</h4>
+            </div>
+            <div class="card-body">
+                <form id="creditoForm" class="row g-3">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control form-control-lg" id="cliente" placeholder="Nombre del cliente" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" step="0.01" class="form-control form-control-lg" id="monto" placeholder="Monto ($)" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" step="0.01" class="form-control form-control-lg" id="tasa_interes" placeholder="Tasa de interés (%)" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" class="form-control form-control-lg" id="plazo" placeholder="Plazo (meses)" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control form-control-lg" id="fecha_otorgamiento" required>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-save me-2"></i>Registrar Crédito
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla de Créditos -->
+        <div class="card shadow-lg mb-5 animate__animated animate__fadeInUp">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="fas fa-list-alt me-2"></i>Créditos Registrados</h4>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover align-middle" id="creditosTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Monto</th>
+                            <th>Tasa</th>
+                            <th>Plazo</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Gráfica -->
+        <div class="card shadow-lg animate__animated animate__fadeIn">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Estadísticas de Créditos</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="creditosChart" height="120"></canvas>
+            </div>
+        </div>
+        <!-- Dentro del card de la gráfica -->
+<div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+    <h4 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Estadísticas de Créditos</h4>
+    <select id="tipoGrafica" class="form-select w-25">
+        <option value="cliente">Por Cliente</option>
+        <option value="monto">Por Rangos de Monto</option>
+        <option value="total">Total General</option>
+    </select>
+</div>
+    </div>
+
+    <!-- Modal de Edición con Bootstrap -->
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Editar Crédito</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCreditoForm">
+                    <input type="hidden" id="editId">
+                    <div class="mb-3">
+                        <label class="form-label">Cliente:</label>
+                        <input type="text" class="form-control" id="editCliente" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Monto:</label>
+                        <input type="number" step="0.01" class="form-control" id="editMonto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tasa de Interés (%):</label>
+                        <input type="number" step="0.01" class="form-control" id="editTasaInteres" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Plazo (meses):</label>
+                        <input type="number" class="form-control" id="editPlazo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha:</label>
+                        <input type="date" class="form-control" id="editFechaOtorgamiento" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" form="editCreditoForm" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
