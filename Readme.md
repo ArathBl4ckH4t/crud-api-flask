@@ -1,4 +1,4 @@
-# Sistema de Gestión de Créditos
+# Sistema de Gestión de Créditos CRUD
 
 <a href="https://github.com/ArathBl4ckH4t">
     <img src="img/ArathBl4ckH4t-GitHub-24292e.svg" alt="Build" />
@@ -141,10 +141,18 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 
 ## 📡 Endpoints API
 
+    ```bash
 @app.route('/api/creditos', methods=['GET', 'POST'])
+    ```
+    ```bash
 @app.route('/api/creditos/<int:credito_id>', methods=['PUT', 'DELETE'])
+    ```
+    ```bash
 @app.route('/api/creditos/distribucion/cliente', methods=['GET'])
+    ```
+    ```bash
 @app.route('/api/creditos/distribucion/montos', methods=['GET'])
+    ```
 
 
 ## 🚀 Instalación del proyecto
@@ -152,6 +160,8 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 **1. Clonar repositorio:**
     ```bash
     git clone https://github.com/ArathBl4ckH4t/crud-api-flask.git
+    ```
+    ```bash
     cd crud-api-flask
     ```
 
