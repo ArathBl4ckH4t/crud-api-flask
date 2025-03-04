@@ -161,31 +161,32 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 ```bash
 git clone https://github.com/ArathBl4ckH4t/crud-api-flask.git
 cd crud-api-flask
+```
 
 **2. Crear entorno virtual:**
-    ```bash
+```bash
     python -m venv env
     source env/bin/activate  # Linux/Mac
     env\Scripts\activate     # Windows
-    ```
+```
 
 **3. Instalar Dependencias:**
-    ```bash
+```bash
     pip install -r requirements.txt
-    ```
+```
 
 **4. Ejecutar Aplicacion:**
-    ```bash
+```bash
     flask run
-    ```
+```
 
 **5. Acceder al sistema:**
-    ```bash
+```bash
     http://localhost:5000
 🔑 Credenciales de administrador:
     Usuario: Deltadata12!
     Contraseña: Deltadata12!
-    ```
+```
 
 
 ##  📂 Estructura del Proyecto
