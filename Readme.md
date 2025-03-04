@@ -158,7 +158,7 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 ## 🚀 Instalación del proyecto
 
 **1. Clonar repositorio:**
-    ```bash
+```bash
 git clone https://github.com/ArathBl4ckH4t/crud-api-flask.git
 cd crud-api-flask
 
