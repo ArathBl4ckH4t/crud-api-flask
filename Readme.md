@@ -63,6 +63,10 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 ### 1. Login
 
 -   Formato de entrada para que unicamente se logeen los superusuarios para poder ingresar creditos nuevos.
+-   Para poder logearte como superusuario se ah definido una contraseña y un usuario por defecto para dar
+    diseño y logica a la estructura del proyecto. 
+-   **Contraseña:** Deltadata12!
+-   **Usurario:** Deltadata12!
 
 ![Login](img/login.png)
 
