@@ -193,6 +193,9 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 
 ##  📂 Estructura del Proyecto
 
+## 📂 Estructura del Proyecto
+
+```
 crud-api-flask/
 ├── env/
 ├── static/
@@ -206,6 +209,7 @@ crud-api-flask/
 ├── app.py
 ├── requirements.txt
 └── creditos.db
+```
 
 ##  📜 Licencia
 
