@@ -165,19 +165,19 @@ cd crud-api-flask
 
 **2. Crear entorno virtual:**
 ```bash
-    python -m venv env
-    source env/bin/activate  # Linux/Mac
-    env\Scripts\activate     # Windows
+python -m venv env
+source env/bin/activate  # Linux/Mac
+env\Scripts\activate     # Windows
 ```
 
 **3. Instalar Dependencias:**
 ```bash
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 **4. Ejecutar Aplicacion:**
 ```bash
-    flask run
+flask run
 ```
 
 **5. Acceder al sistema:**
