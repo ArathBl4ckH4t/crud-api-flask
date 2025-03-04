@@ -159,11 +159,8 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 
 **1. Clonar repositorio:**
     ```bash
-    git clone https://github.com/ArathBl4ckH4t/crud-api-flask.git
-    ```
-    ```bash
-    cd crud-api-flask
-    ```
+git clone https://github.com/ArathBl4ckH4t/crud-api-flask.git
+cd crud-api-flask
 
 **2. Crear entorno virtual:**
     ```bash
@@ -192,8 +189,6 @@ Permite realizar operaciones CRUD completas y genera reportes gráficos interact
 
 
 ##  📂 Estructura del Proyecto
-
-## 📂 Estructura del Proyecto
 
 ```
 crud-api-flask/
